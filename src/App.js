@@ -6,6 +6,8 @@ import Header from './components/Header'
 import CurrentWeather from './components/CurrentWeather'
 import FC5Days3Hours from './components/FC5Days3Hours'
 import RouteMenu from './components/RouteMenu'
+import DetailWeather from './components/DetailWeather'
+
 import PageNotFound from './components/PageNotFound'
 import './App.css';
 
@@ -68,6 +70,7 @@ class App extends Component {
           <Header />
         <RouteMenu />
         <div className="container">
+          <br />
           <div>
               <form onSubmit={(event)=>{
                   event.preventDefault();
@@ -83,6 +86,8 @@ class App extends Component {
           <Switch>
             <Route exact path="/"
               component={()=> <CurrentWeather currentData={currentData} />} />
+            <Route exact path="/:id"
+                component={()=> <DetailWeather currentData={currentData} />} />
             <Route exact path="/forecast5"
               component={()=> <FC5Days3Hours data5Days3Hours={data5Days3Hours}/>} />
             <Route component={PageNotFound} />

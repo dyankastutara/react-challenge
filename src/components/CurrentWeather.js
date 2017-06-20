@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom';
 
 class CurrentWeather extends Component {
   // constructor(props){
@@ -7,7 +8,6 @@ class CurrentWeather extends Component {
   // }
   render(){
     if(this.props.currentData.main){
-      console.log(this.props.currentData);
       return (
         <div>
           <div>
@@ -29,7 +29,7 @@ class CurrentWeather extends Component {
                   <td>{this.props.currentData.weather[0].description}</td>
                   <td>Speed: {this.props.currentData.wind.speed}, Deg: {this.props.currentData.wind.deg}</td>
                   <td>Longitude: {this.props.currentData.coord.lon}, Latitude: {this.props.currentData.coord.lat}</td>
-                  <td>Detail</td>
+                  <td><Link to={`/${this.props.currentData.id}`}>Detail</Link></td>
                 </tr>
               </tbody>
             </table>
