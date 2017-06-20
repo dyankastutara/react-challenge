@@ -2,10 +2,12 @@ import React from 'react'
 
 const FC5Days3Hours = function(props) {
     let weathers = props.data5Days3Hours.list;
+    console.log(weathers);
     if(weathers){
         return (
             <div>
                 <h2>Call 5 day / 3 hour forecast data</h2>
+                <p>City : {props.data5Days3Hours.city.name}</p>
                 <table className="table">
                     <thead>
                         <tr>
@@ -13,6 +15,7 @@ const FC5Days3Hours = function(props) {
                           <th>Weather Description</th>
                           <th>Wind</th>
                           <th>Coordinate</th>
+                          <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -24,6 +27,7 @@ const FC5Days3Hours = function(props) {
                                     <td>{weather.weather[0].description}</td>
                                   <td>Deg: {weather.wind.deg}, Wind: {weather.wind.speed}</td>
                                 <td>Longitude: {JSON.stringify(props.data5Days3Hours.city.coord.lon)}, Latitude: {JSON.stringify(props.data5Days3Hours.city.coord.lat)}</td>
+                              <td>Detail</td>
                                 </tr>
                                 );
                             })

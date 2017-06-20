@@ -7,6 +7,7 @@ class CurrentWeather extends Component {
   // }
   render(){
     if(this.props.currentData.main){
+      console.log(this.props.currentData);
       return (
         <div>
           <div>
@@ -16,17 +17,19 @@ class CurrentWeather extends Component {
               <thead>
                 <tr>
                   <th>Temp</th>
-                <th>Weather Description</th>
+                  <th>Weather Description</th>
                   <th>Wind</th>
                   <th>Coordinate</th>
+                  <th>Action</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td>{this.props.currentData.main.temp}</td>
-                <td>{this.props.currentData.weather[0].description}</td>
-              <td>Speed: {this.props.currentData.wind.speed}, Deg: {this.props.currentData.wind.deg}</td>
-            <td>Longitude: {this.props.currentData.coord.lon}, Latitude: {this.props.currentData.coord.lat}</td>
+                  <td>{this.props.currentData.weather[0].description}</td>
+                  <td>Speed: {this.props.currentData.wind.speed}, Deg: {this.props.currentData.wind.deg}</td>
+                  <td>Longitude: {this.props.currentData.coord.lon}, Latitude: {this.props.currentData.coord.lat}</td>
+                  <td>Detail</td>
                 </tr>
               </tbody>
             </table>
