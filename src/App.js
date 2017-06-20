@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import axios from 'axios';
 
 import Header from './components/Header'
 import CurrentWeather from './components/CurrentWeather'
 import FC5Days3Hours from './components/FC5Days3Hours'
+import RouteMenu from './components/RouteMenu'
 import './App.css';
 
 class App extends Component {
@@ -44,17 +46,20 @@ class App extends Component {
   render() {
     const {currentData, data5Days3Hours} = this.state
     return (
-      <div className="App">
-        <Header />
+      <BrowserRouter>
+        <div className="App">
+          <Header />
+        <RouteMenu />
         <div className="container">
-          <CurrentWeather
-            currentData={currentData}
-          />
-          <FC5Days3Hours
-            data5Days3Hours={data5Days3Hours}
-          />
+          <Switch>
+            <Route exact path="/" component={()=> <CurrentWeather
+              currentData={currentData}
+            />} />
+          <Route path="/forecast5" component={()=> <FC5Days3Hours                    data5Days3Hours={data5Days3Hours}/>} />
+        </Switch>
         </div>
       </div>
+    </BrowserRouter>
     );
   }
   componentWillMount(){
