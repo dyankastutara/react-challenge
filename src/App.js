@@ -86,10 +86,10 @@ class App extends Component {
           <Switch>
             <Route exact path="/"
               component={()=> <CurrentWeather currentData={currentData} />} />
-            <Route exact path="/:id"
-                component={()=> <DetailWeather currentData={currentData} />} />
             <Route exact path="/forecast5"
               component={()=> <FC5Days3Hours data5Days3Hours={data5Days3Hours}/>} />
+            <Route exact path="/:id"
+                component={()=> <DetailWeather currentData={currentData} />} />
             <Route component={PageNotFound} />
         </Switch>
         </div>
