@@ -1,7 +1,9 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from 'redux'
 
-import dataNameSWReducer from './dataNameSWReducer';
+import SelectSourcesReducer from './SelectSourcesReducer'
+import ListArticlesReducer from './ListArticlesReducer'
 
 export default combineReducers({
-  listName: dataNameSWReducer,
+  listSources: SelectSourcesReducer,
+  listArticles: ListArticlesReducer
 })
