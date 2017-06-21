@@ -6,7 +6,7 @@ class RouteMenu extends Component {
     return(
       <div style={{height:50, backgroundColor: "silver", textAlign: "right", padding: 15}}>
         <div>
-          <Link to="/">
+          {/* <Link to="/">
             <button>
               Current Weather
             </button>
@@ -15,7 +15,7 @@ class RouteMenu extends Component {
             <button>
               Forecast 5 Day
             </button>
-          </Link>
+          </Link> */}
         </div>
       </div>
     )
