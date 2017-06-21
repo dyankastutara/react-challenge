@@ -11,13 +11,17 @@ import DetailWeather from './components/DetailWeather'
 import PageNotFound from './components/PageNotFound'
 import './App.css';
 
+import store from './store/configStore'
+import {getData5Days3Hours} from './actions/data5Days3HoursAction'
+import { connect } from 'react-redux'
+
 class App extends Component {
-  constructor(props){
-    super(props);
+  constructor(){
+    super();
     this.state = {
       inputCity: '',
       currentData:[],
-      data5Days3Hours:[],
+      data5Days3Hours: {},
       searchByCity: ''
     }
   }
@@ -49,18 +53,19 @@ class App extends Component {
     })
   }
 
-  data5Days3Hours(search){
-    let city = search || 'Jakarta'
-    axios.get(`http://api.openweathermap.org/data/2.5/forecast?q=${city},id&mode=json&APPID=8586607e679f0211700813ce43b0da34`)
-    .then(response=>{
-      this.setState({
-        data5Days3Hours: response.data
-      })
-    })
-    .catch(err=>{
-      console.log(err);
-    })
-  }
+  // data5Days3Hours(search){
+  //   let city = search || 'Jakarta'
+  //   axios.get(`http://api.openweathermap.org/data/2.5/forecast?q=${city},id&mode=json&APPID=8586607e679f0211700813ce43b0da34`)
+  //   .then(response=>{
+  //     console.log(response.data);
+  //     this.setState({
+  //       data5Days3Hours: response.data
+  //     })
+  //   })
+  //   .catch(err=>{
+  //     console.log(err);
+  //   })
+  // }
 
   render() {
     const {currentData, data5Days3Hours} = this.state
@@ -74,6 +79,7 @@ class App extends Component {
           <div>
               <form onSubmit={(event)=>{
                   event.preventDefault();
+                  store.dispatch(getData5Days3Hours(this.state.inputCity))
                   this.searchByCity(this.state.inputCity)
                 }}>
                 <div className="form-group">
@@ -87,7 +93,7 @@ class App extends Component {
             <Route exact path="/"
               component={()=> <CurrentWeather currentData={currentData} />} />
             <Route exact path="/forecast5"
-              component={()=> <FC5Days3Hours data5Days3Hours={data5Days3Hours}/>} />
+              component={()=> <FC5Days3Hours />} />
             <Route exact path="/:id"
                 component={()=> <DetailWeather currentData={currentData} />} />
             <Route component={PageNotFound} />
@@ -99,11 +105,15 @@ class App extends Component {
   }
   componentWillMount(){
     this.currentWeather()
-
+    // this.setState({
+    //   data5Days3Hours: store.getState().data5Days.result,
+    // })
+    // store.dispatch(getData5Days3Hours())
   }
   componentDidMount(){
+    store.dispatch(getData5Days3Hours())
     this.currentWeather()
-    this.data5Days3Hours()
+    // this.data5Days3Hours()
   }
 }
 

@@ -1,14 +1,10 @@
 import React, { Component } from 'react'
 
 class DetailWeather extends Component {
-  constructor(props){
-    super(props)
-  }
-
   render(){
     return(
       <div>
-        { this.props.currentData.length == 0 ? <div>
+        { this.props.currentData.length === 0 ? <div>
             <h1>No Find this Id</h1>
           </div> : <div>
             <h2>Detail weather with id : {this.props.currentData.id}, City: {this.props.currentData.name}</h2>
